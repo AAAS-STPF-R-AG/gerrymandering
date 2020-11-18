@@ -6,6 +6,10 @@ Gerrymandering project for the 2020-21 STPF R Users AG.
 
 The goal of this project is to create functionality in R to input a set of district boundaries and output metrics about them. 
 
+- Federally, only requirement is that all districts have roughly equal population 
+- Redistricting in VA [Wiki](https://en.wikipedia.org/wiki/Redistricting_in_Virginia), [Ballotpedia](https://ballotpedia.org/Redistricting_in_Virginia)
+
+
 ### Restrictions on Districts 
 
 What requirements does a district have to meet in Virginia to qualify as a valid district? School board level, State House, State Senate, US House of Reps, etc. 
