@@ -6,6 +6,10 @@ Gerrymandering project for the 2020-21 STPF R Users AG.
 
 The goal of this project is to create functionality in R to input a set of district boundaries and output metrics about them. 
 
+### Restrictions on Districts 
+
+What requirements does a district have to meet in Virginia to qualify as a valid district? School board level, State House, State Senate, US House of Reps, etc. 
+
 ### Collecting metrics 
 
 There are lots of metrics to evaluate district boundaries, from statistical, demographic, or purely mathematical perspective. Our first goal of this project is to collect those metrics here. 
