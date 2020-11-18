@@ -24,7 +24,7 @@ There are lots of metrics to evaluate district boundaries, from statistical, dem
     1. the excess seats test
     2. the lopsided outcomes test 
     3. the reliable-wins test
-- [Efficiency gaps](https://www.nytimes.com/interactive/2017/10/03/upshot/how-the-new-math-of-gerrymandering-works-supreme-court.html) by the Upshot at NYT.
+- [Efficiency gaps](https://www.nytimes.com/interactive/2017/10/03/upshot/how-the-new-math-of-gerrymandering-works-supreme-court.html) by the Upshot at NYT. **Kristin**
 - [More efficiency gap metrics](https://www.tandfonline.com/doi/pdf/10.1080/00029890.2019.1609324?needAccess=true) from the American Mathematical Monthly journal. 
 - [Compactness](https://arxiv.org/pdf/1803.02857.pdf)
 
