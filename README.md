@@ -14,13 +14,13 @@ What requirements does a district have to meet in Virginia to qualify as a valid
 
 There are lots of metrics to evaluate district boundaries, from statistical, demographic, or purely mathematical perspective. Our first goal of this project is to collect those metrics here. 
 
-- [Here](http://www.ams.org/publicoutreach/feature-column/fc-2014-08) is an article from the American Mathematical Society about metrics for evaluating district shapes. The first 4 are compactness metrics. 
+- [Here](http://www.ams.org/publicoutreach/feature-column/fc-2014-08) is an article from the American Mathematical Society about metrics for evaluating district shapes. The first 4 are compactness metrics. **Sam** 
     * Polsby-Popper	
     * Reock	
     * Schwartberg	
     * Convex Hull	
-    * Bizarreness	
-- [3 tests of partisan gerrymandering](http://www.stanfordlawreview.org/wp-content/uploads/sites/3/2016/06/3_-_Wang_-_Stan._L._Rev.pdf), used by the [Princeton Gerrymandering project](https://gerrymander.princeton.edu/tests). [Lopsided wins](https://projects.fivethirtyeight.com/partisan-gerrymandering-north-carolina/) from 538.
+    * Bizarreness 	
+- [3 tests of partisan gerrymandering](http://www.stanfordlawreview.org/wp-content/uploads/sites/3/2016/06/3_-_Wang_-_Stan._L._Rev.pdf), used by the [Princeton Gerrymandering project](https://gerrymander.princeton.edu/tests). [Lopsided wins](https://projects.fivethirtyeight.com/partisan-gerrymandering-north-carolina/) from 538. **Brandon** 
     1. the excess seats test
     2. the lopsided outcomes test 
     3. the reliable-wins test
