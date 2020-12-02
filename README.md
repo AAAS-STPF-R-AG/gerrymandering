@@ -27,8 +27,27 @@ There are lots of metrics to evaluate district boundaries, from statistical, dem
     * More on [Compactness](https://arxiv.org/pdf/1803.02857.pdf)
 - [3 tests of partisan gerrymandering](http://www.stanfordlawreview.org/wp-content/uploads/sites/3/2016/06/3_-_Wang_-_Stan._L._Rev.pdf), used by the [Princeton Gerrymandering project](https://gerrymander.princeton.edu/tests). [Lopsided wins](https://projects.fivethirtyeight.com/partisan-gerrymandering-north-carolina/) from 538. **Brandon** 
     1. the excess seats test
+        Requires a computer simulation available at princeton.gerrymander.edu which can be calculated from national trends in a given election. Not worth replicating though source does indicate that the software can be requested directly too
+Provides a delta, based on actual seats vs expected seats based on nation trends, divided by the standard deviation of the expected. The difference can be linked to a p value (I don't know how just yet - can research)
+
+This just alerts us that the state likely differed from nationwide trends, not why.
+
     2. the lopsided outcomes test 
+      t-test on the shares of votes winners got in their districts, split between R and D.
+
+If there is a statistically significant difference, this is evidence that margins were targeted (shore up and win 'just barely' in districts the party wants to win, and lump a lot of other party's votes into a few throwaway districts)
+
     3. the reliable-wins test
+      The reliable wins test
+Separate whether the state is split or dominated by the gerrymandering party
+if a closely divided state:
+Need vote share for each district for a party
+Compare median and mean vote share across districts
+Delta = (mean - median)/(0.756* SE vote shares across N districts)
+SE = SD/sqrt(N)
+
+if dominant party:
+chi-squared test on standard deviation of vote shared in districts won in state vs nationally
 - [Efficiency gaps](https://www.nytimes.com/interactive/2017/10/03/upshot/how-the-new-math-of-gerrymandering-works-supreme-court.html) by the Upshot at NYT. **Kristin**
 - [More efficiency gap metrics](https://www.tandfonline.com/doi/pdf/10.1080/00029890.2019.1609324?needAccess=true) from the American Mathematical Monthly journal. 
 - [Efficiency gap definition](https://chicagounbound.uchicago.edu/cgi/viewcontent.cgi?article=1946&context=public_law_and_legal_theory) in the original article defining the idea and a [brief explanation](https://www.brennancenter.org/sites/default/files/legal-work/How_the_Efficiency_Gap_Standard_Works.pdf) from the Brennan Center for Justice at NYU. **Stu**
