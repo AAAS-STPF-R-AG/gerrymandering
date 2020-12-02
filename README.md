@@ -21,7 +21,7 @@ There are lots of metrics to evaluate district boundaries, from statistical, dem
 - [Here](http://www.ams.org/publicoutreach/feature-column/fc-2014-08) is an article from the American Mathematical Society about metrics for evaluating district shapes. The first 4 are compactness metrics. **Sam** 
     * Polsby-Popper	
     * Reock: ratio of the area of the polygon (district) to the area of the smallest circle cirumscribing the polygon. 
-    * Schwartberg	
+    * Schwartberg: ratio of the perimeter of the polygon (district) 	to the perimeter of the circle with the same area as the polygon
     * Convex Hull	
     * Bizarreness 	
     * More on [Compactness](https://arxiv.org/pdf/1803.02857.pdf)
