@@ -35,6 +35,8 @@ There are lots of metrics to evaluate district boundaries, from statistical, dem
 
 - Population Density metrics, i.e. "packing and cracking" **Justin**
 
+- [Here](https://mggg.org/) is another mathematical project investigating metrics on gerrymandering, at tufts University. **Stu**
+
 ### Data to evaluate 
 
 Because we are in the DC area, and Virginia happens to have an anti-gerrymmandering amendment on the ballot in 2020 (which [passed](https://www.washingtonpost.com/elections/election-results/virginia-2020/#ballot-measures)!), we will start with Virginia data. 
