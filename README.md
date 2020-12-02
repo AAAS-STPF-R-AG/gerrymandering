@@ -31,6 +31,7 @@ There are lots of metrics to evaluate district boundaries, from statistical, dem
     3. the reliable-wins test
 - [Efficiency gaps](https://www.nytimes.com/interactive/2017/10/03/upshot/how-the-new-math-of-gerrymandering-works-supreme-court.html) by the Upshot at NYT. **Kristin**
 - [More efficiency gap metrics](https://www.tandfonline.com/doi/pdf/10.1080/00029890.2019.1609324?needAccess=true) from the American Mathematical Monthly journal. 
+- [Efficiency gap definition](https://chicagounbound.uchicago.edu/cgi/viewcontent.cgi?article=1946&context=public_law_and_legal_theory) in the original article defining the idea and a [brief explanation](https://www.brennancenter.org/sites/default/files/legal-work/How_the_Efficiency_Gap_Standard_Works.pdf) from the Brennan Center for Justice at NYU. **Stu**
 
 - Population Density metrics, i.e. "packing and cracking" **Justin**
 
