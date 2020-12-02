@@ -35,7 +35,7 @@ There are lots of metrics to evaluate district boundaries, from statistical, dem
 
 - Population Density metrics, i.e. "packing and cracking" **Justin**
 
-- [Here](https://mggg.org/) is another mathematical project investigating metrics on gerrymandering, at tufts University. **Stu**
+- [Here](https://mggg.org/) is another mathematical project investigating metrics on gerrymandering, at Tufts University. **Stu**
 
 ### Data to evaluate 
 
