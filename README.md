@@ -63,6 +63,11 @@ There are lots of metrics to evaluate district boundaries, from statistical, dem
 
 Because we are in the DC area, and Virginia happens to have an anti-gerrymmandering amendment on the ballot in 2020 (which [passed](https://www.washingtonpost.com/elections/election-results/virginia-2020/#ballot-measures)!), we will start with Virginia data. 
 
+Potential Data Source
+   FEC Data https://www.fec.gov/introduction-campaign-finance/election-and-voting-information/
+   Disctrict maps
+   TidyCensus R package
+
 ### Existing gerrymandering resources in R 
 
 - [`redist` package](https://cran.r-project.org/web/packages/redist/redist.pdf), [GitHub repo](https://github.com/kosukeimai/redist)
