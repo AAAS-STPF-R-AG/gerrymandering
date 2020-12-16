@@ -1,0 +1,133 @@
+2018 Election Results by Precinct
+
+Vote Column Label Format
+------------------------
+Columns reporting votes follow a standard label pattern. One example is:
+G16PREDCli
+The first character is G for a general election, P for a primary, S for a special.
+Characters 2 and 3 are the year of the election.
+Characters 4-6 represent the office type (see list below).
+Character 7 represents the party of the candidate.
+Characters 8-10 are the first three letters of the candidate's last name.
+
+Office Codes
+ATG - Attorney General
+GOV - Governor
+HOD - House of Delegates, accompanied by a HOD_DIST column indicating district number
+HOR - U.S. House, accompanied by a HOR_DIST column indicating district number
+MNI - State Mine Inspector
+SOS - Secretary of State
+SPI - Superintendent of Public Instruction
+TRE - Treasurer
+USS - U.S. Senate
+
+Party Codes
+D and R will always represent Democrat and Republican, respectively.
+See the state-specific notes for the remaining codes used in a particular file; note that third-party candidates may appear on the ballot under different party labels in different states.
+
+
+Arizona
+-------
+Election results from Arizona Secretary of State (https://azsos.gov/elections/voter-registration-historical-election-data/historical-election-results-information)
+Precinct shapefile from Arizona Secretary of State via personal communication.
+
+Apache: Merge Puerco East/West
+La Paz: Merge Alamo into Wenden
+
+Maricopa: South Mtn Park E, NE, S, SE, SW merged into South Mtn Park
+
+G18USSRMCS - Martha McSally (Republican Party)
+G18USSDSIN - Kyrsten Sinema (Democratic Party)
+G18USSGGRE - Angela Green (Green Party)
+G18USSOWRI - Write-in Votes
+
+G18GOVRDUC - Doug Ducey (Republican Party)
+G18GOVDGAR - David Garcia (Democratic Party)
+G18GOVGTOR - Angel Torres (Green Party)
+G18GOVOWRI - Write-in Votes
+
+G18SOSRGAY - Steve Gaynor (Republican Party)
+G18SOSDHOB - Katie Hobbs (Democratic Party)
+G18SOSOWRI - Write-in Votes
+
+G18ATGRBRN - Mark Brnovich (Republican Party)
+G18ATGDCON - January Contreras (Democratic Party)
+G18ATGOWRI - Write-in Votes
+
+G18TRERYEE - Kimberly Yee (Republican Party)
+G18TREDMAN - Mark Manoil (Democratic Party)
+G18TREOWRI - Write-in Votes
+
+G18SPIRRIG - Frank Riggs (Republican Party)
+G18SPIDHOF - Kathy Hoffman (Democratic Party)
+G18SPIOWRI - Write-in Votes
+
+G18MNIRHAR - Joe Hart (Republican Party)
+G18MNIDPIE - Bill Pierce (Democratic Party)
+G18MNIOWRI - Write-in Votes
+
+
+Virginia
+--------
+Election results from Virginia Department of Elections(https://historical.elections.virginia.gov/)
+
+Absentee ballots and provisional votes were reported at the county or city level throughout the state. These were distributed by candidate to precincts based on their share of the precinct-level reported vote.
+
+Precinct shapefile primarily from the U.S. Census Bureau's 2020 Redistricting Data Program Phase 2 release. Virginia election reports often include precinct splits that are obsolete or unused in practice. These have been omitted. In cases where voters were incorrectly assigned to the wrong district the de facto precinct split has been included for that election.
+
+The following modifications were made to recreate the 2018 precinct boundaries.
+
+Albemarle: Add Mechums River to match county GIS shapefile
+Arlington: Adjust Gunston/Oakridge to match county GIS shapefile
+Bristol City: Adjust Ward 2/Ward 4 to match description in municipal code
+Charles City County: Adjust District 1/District 2 boundary to match county code
+Covington City: Realign Ward 1, Ward 2, Ward 3 to match city PDF map and municipal code
+Culpeper: Adjust East Fairfax/Brandy Station boundary to match county GIS shapefile
+Emporia City: Adjust Precincts 1/7, Precincts 2/5 to match municipal code
+Essex: Adjust South Precinct/Central Precinct boundary to match county PDF
+Fairfax: Adjust Virginia Run/Bull Run to match county GIS shapefile
+Fredericksburg City: Adjust District 1/3 boundaries to match municipal code
+Galax City: Adjust North/South precinct boundary to match municipal GIS shapefile
+Goochland: Adjust Hadensville/Fife boundary to match description in county code
+Halifax: Merge South Boston East/West; Adjust Meadville/Republican Grove to match 2011 redistricting PDF map
+Hampton City: Add US House District 2 segment of Tyler Precinct to match county PDF
+Hanover: Adjust Blunts/Beaverdam boundary to match county PDF
+Henry: Adjust 10 precinct boundaries to align VTDs with county GIS shapefile
+Loudoun: Adjust Weller/Ashbrook, Evergreen/Sycolin Creek; Add Goshen Post, Buffalo Trail to match county GIS shapefile
+Madison: Adjust all precincts to align VTDs with county GIS shapefile
+Newport News City: Adjust Sanford/Riverview boundary to match county GIS shapefile
+Norfolk City: Merge Bramblewood into Chesterfield/Ruffner Academy; Adjust Granby/Titustown to match county PDF
+Prince William: Adjust Ben Lomond/Mullen, Freedom/Leesylvania to match county GIS shapefile
+Pulaski: Adjust Dublin/New River to match precinct assignments on county GIS parcel viewer
+Rappahanock: Adjust Sperryville/Washington boundary to match county PDF
+Richmond City: Add Precinct 115 to match county GIS shapefile
+Richmond County: Adjust Precincts 2-1/3-1 boundary to match description in county ordinance
+Roanoke County: Adjust 12 precinct boundaries to match county GIS shapefile
+Rockingham: Split East/West Bridgewater to match municipal ordinance; Adjust East Bridgewater to match municipal boundary
+Russell: Adjust Daugherty/West Lebanon boundary to match county PDF
+Tazewell: Merge Abbs Valley/Bossevain, Adria/Gap Store, Pounding Mill/Wardell, Raven/Richlands;  Adjust nearly all precinct boundaries to align VTDs with county GIS shapefile
+Virginia Beach City: Adjust Centerville/Colonial to match county GIS shapefile
+Williamsburg City: Revise Matoaka/Stryker to match municipal PDF map and municipal code
+Wise: Adjust Big Stone Gap/East Stone Gap boundary to match county GIS shapefile
+Wythe: Adjust West Wytheville/East Wytheville boundary to match county GIS shapefile
+
+Results are divided across three files. Because precincts can be split across legislative districts, the legislative races are reported with their own geography that divides these split precincts, resulting in shapes that are assigned to exactly one district.
+
+*va_2018 file*
+G18USSDKAI - Tim Kaine (Democratic Party)
+G18USSRSTE - Corey Stewart (Republican Party)
+G18USSLWAT - Matt Waters (Libertarian Party)
+G18USSOWRI - Write-in Votes
+
+*va_2018_ushouse file*
+CON_DIST - U.S. House district number that the precinct/precinct part belongs to
+G18HORDEM - Democratic Party candidate, U.S. House
+G18HORREP - Republican Party candidate, U.S. House
+G18HORLIB - Libertarian Party candidate, U.S. House
+G18HORWRI - Write-in votes, U.S. House
+
+*va_2018_statehouse_special file* - covering district 8, held on November 6th, and district 24, held on December 18th
+HOD_DIST - House of Delegates district number that the precinct/precinct part belongs to
+S18HODDEM - Democratic Party candidate, House of Delegates
+S18HODREP - Republican Party candidate, House of Delegates
+S18HODWRI - Write-in votes, House of Delegates

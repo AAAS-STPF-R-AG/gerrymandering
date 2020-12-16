@@ -1,0 +1,128 @@
+---
+title: "Getting Data"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r pkgs, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)
+library(tidycensus)
+# I'm watching Love, Actually while I make this. :) Happy holidays! 
+```
+
+##  Types of Data 
+
+For this project we will need:
+
+- Census Data: to count populations in areas 
+- Shapefiles (also can be from Census): to compute the geometric measures 
+- State-level election data: precinct vote counts, also shapefiles 
+
+
+### Census Data 
+
+The [tidycensus](https://walker-data.com/tidycensus/) package is an interface to the Census API that gets data in a [tidy](https://vita.had.co.nz/papers/tidy-data.pdf) way. The intro vignette to the package is [here](https://walker-data.com/tidycensus/articles/basic-usage.html). 
+
+1. Get an API key from [here](https://api.census.gov/data/key_signup.html)
+2. Install a couple packages:
+```r
+install.packages(c("tidyverse", "tidycensus", "usethis")) 
+```
+3. Add the API key emailed to you to your `.Renviron` file. To open this file, run:
+```r
+usethis::edit_r_environ()
+```
+On a new line in the .Renviron file, put: 
+```r
+CENSUS_API_KEY="yourkeyhere"
+```
+4. Restart R. (Session -> Restart R)
+5. Run the following: 
+```r
+library(tidyverse)
+library(tidycensus)
+
+census_api_key(Sys.getenv("CENSUS_API_KEY"), install = TRUE)
+```
+6. Now you can use `tidycensus`! 
+
+#### Variables
+
+The Census records a whole lotta variables, and `tidycensus` has a way to search for them: 
+```r
+v19 <- load_variables(2019, "acs5", cache = TRUE)
+View(v19)
+```
+The 2019 ACS data was just released! 
+
+Use this call to get total population in the state legislative districts of Virginia in 2019 5-year ACS data. 
+
+
+```{r}
+pop_var <- "B01003_001"
+pop_st_leg <- get_acs(geography = "state legislative district (upper chamber)",
+                       variables = c(total_pop = pop_var),
+                       state="VA", 
+                       year = 2019)
+
+head(pop_st_leg)
+```
+
+### Shapefiles 
+
+The [`tigris`](https://github.com/walkerke/tigris) package will allow us to directly query the TIGER/Line shapefiles from the Census Bureau.
+
+1. Install some packages: 
+```r
+install.packages(c('tigris', 'sf'))
+```
+2. 
+```{r}
+library(tigris)
+library(sf)
+
+va_st_leg <- state_legislative_districts(state = "VA", 
+                            house = "upper", 
+                            year = 2019)
+va_st_leg
+```
+
+### State-level election data
+
+The website [openprecincts.org](https://openprecincts.org/va/) has state-level precinct data. The latest election data for Virginia is from 2018. The data for the Senate election is in the [dat](dat/) folder. More results for 2018 can be downloaded [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/UBKYRU&version=4.0). 
+
+1. Read in the shape file: 
+```{r, message=FALSE}
+va_2018_sen <- st_read("dat/va_2018/va_2018_senate.shp") #sf package 
+va_2018_sen
+```
+
+## Visualizing Data 
+
+The combination of [`sf`](https://r-spatial.github.io/sf/) and [`ggplot2`](https://ggplot2.tidyverse.org/) is pretty magical here. 
+
+```{r}
+ggplot(data = va_st_leg) + 
+  geom_sf(size = .2) + 
+  ggtitle("Virginia State Senate Districts") + 
+  theme_void()
+```
+
+### Combining data 
+
+Pull in the population data from `po_st_leg`: 
+
+```{r}
+va_st_leg2 <- va_st_leg %>% 
+  left_join(pop_st_leg, by = c("GEOID" = "GEOID"))
+
+ggplot(data = va_st_leg2) + 
+  geom_sf(size = .2, aes(fill = estimate)) +
+  scale_fill_distiller(name = "Population", palette = "PuBu", direction = 1) + 
+  ggtitle("Virginia State Senate Districts", subtitle = "Population Estimate, ACS 2019 5-yr") + 
+  theme_void()
+```
+
