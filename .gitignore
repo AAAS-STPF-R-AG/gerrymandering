@@ -7,6 +7,7 @@
 
 # User-specific files
 .Ruserdata
+*.Rproj
 
 # Example code in package build process
 *-Ex.R
@@ -37,3 +38,10 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Mac OS files 
+.DS_Store
+
+# Sam's files 
+how_to/dat/va_2018.zip
+
