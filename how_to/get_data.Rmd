@@ -113,7 +113,7 @@ ggplot(data = va_st_leg) +
 
 ### Combining data 
 
-Pull in the population data from `po_st_leg`: 
+Pull in the population data from `pop_st_leg`: 
 
 ```{r}
 va_st_leg2 <- va_st_leg %>% 
