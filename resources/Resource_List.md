@@ -14,7 +14,7 @@ R Online Resources
 - GIT https://happygitwithr.com/index.html
 
 - R for data science https://r4ds.had.co.nz/
-
+- Package information https://rdrr.io/
 
 Seminars/ conferences
 =========================
@@ -25,6 +25,8 @@ Seminars/ conferences
 
 Misc
 ===================
+- FAIR priciples https://www.nature.com/articles/sdata201618 
+https://www.go-fair.org/fair-principles/
 - Data for Good AG https://sites.google.com/view/data-for-good/home
 - Open Case Studies https://www.opencasestudies.org/
 - DataKind DC https://www.datakind.org/chapters/datakind-dc
