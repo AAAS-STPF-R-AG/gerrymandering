@@ -1,0 +1,79 @@
+---
+title: "3tests"
+author: "Brandon Rohnke"
+date: "1/25/2021"
+output: html_document
+---
+
+[3 tests of partisan gerrymandering](http://www.stanfordlawreview.org/wp-content/uploads/sites/3/2016/06/3_-_Wang_-_Stan._L._Rev.pdf), used by the [Princeton Gerrymandering project](https://gerrymander.princeton.edu/tests). [Lopsided wins](https://projects.fivethirtyeight.com/partisan-gerrymandering-north-carolina/) from 538.
+
+##2018 Election Results
+After saving Excel output from [Federal Election Commission](https://www.fec.gov/introduction-campaign-finance/election-and-voting-information/federal-elections-2018/), sheet 6: Table 5.  2018 Votes Cast for the U.S. House of Representatives by Party has the data we need. Save sheet as .csv
+####Future work: look into ways to streamline this?
+
+Load table and trim to candidates in general election via removing rows with `NA` in `GENERAL %`
+```r
+library(readr)
+house18 <- read_csv("how_to/3_tests/federalelections2018-US-House-results-by-state.csv")
+house18.general <- house18[!is.na(house18$`GENERAL %`), ]
+```
+
+The error message below is fine
+`Warning message:
+Missing column names filled in: 'X24' [24], 'X25' [25]
+`
+
+##Test 2
+Test 2 performs a Students T test on winning vote shares split by R and D in a state. If the difference in means is statistically significant, then the two parties likely have an unequal distribution of margines. In conjunction with a party being flagged by Test 1, if that party has a statistically lower mean winning vote share, then it is possible that they have designed districts to spread out their voting blocks in order to more efficiently win seats (few wasted votes)
+
+We can filter down to two tables which contain districts Democrats won in VA (7) or Republicans won in VA (4)
+####Comma at end is important to define looking at rows
+```r
+Dems=house18.general[which(house18.general$PARTY=="D" & house18.general$`GE WINNER INDICATOR`=="W" & house18.general$`STATE ABBREVIATION`=="VA"),]
+GOP=house18.general[which(house18.general$PARTY=="R" & house18.general$`GE WINNER INDICATOR`=="W" & house18.general$`STATE ABBREVIATION`=="VA"),]
+```
+
+Verify that 11 distrits in total (11 VA districts) through number of objects in each variable. In this case, we have 7 in Dems and 4 in GOP. This step helped us catch that `which()` was needed to play nicely with the strings and Boolean logic with multiple NA cells. Now that we have filtered to the winner in each district, we can convert the character to a number by trimming the %
+
+```r
+Dems$`GENERAL %` = gsub("%", "", Dems$`GENERAL %`)
+Dems$'GENERAL %'<-as.numeric(Dems$`GENERAL %`)
+GOP$`GENERAL %` = gsub("%", "", GOP$`GENERAL %`)
+GOP$'GENERAL %'<-as.numeric(GOP$`GENERAL %`)
+```
+
+Now we can run the t-test
+####Look into whether we are running the correct T-test for our variables - we should assume populations of heterogenous variance
+```r
+t.test(Dems$`GENERAL %`,GOP$`GENERAL %`,var.equal=F)
+```
+Expected Output
+```
+	Welch Two Sample t-test
+
+data:  Dems$`GENERAL %` and GOP$`GENERAL %`
+t = 1.152, df = 8.1556, p-value = 0.282
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -7.157619 21.542619
+sample estimates:
+mean of x mean of y 
+  65.4900   58.2975 
+```
+
+Democrats trend towards a higher margine of vote shares, so our alternative hypothesis if true would support the conclusion that there is gerrymandering in favor of the republicans in VA. However, we cannot reject the null hypothesis (p = 0.282) and thus Virginia House elections 2018 fail Test 2. Next we look into Test 3, which can catch some different factors than Test 2.
+
+##tidyverse options example setup
+```r
+library(tidyverse)
+dems.df = house18.general %>% 
+					filter(PARTY == 'D' & `STATE ABBREVIATION` == 'VA' & `GE WINNER INDICATOR` == 'W') %>%
+					mutate(general_pct = parse_number(`GENERAL %`)/100)
+gop.df = house18.general %>% 
+					filter(PARTY == 'R' & `STATE ABBREVIATION` == 'VA' & `GE WINNER INDICATOR` == 'W') %>%
+					mutate(general_pct = parse_number(`GENERAL %`)/100)
+t.test(dems.df$`general_pct`,gop.df$`general_pct`,var.equal=F)
+```
+
+##Test 3
+TBD
