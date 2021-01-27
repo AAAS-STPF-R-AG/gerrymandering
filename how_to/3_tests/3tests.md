@@ -5,11 +5,12 @@ project](https://gerrymander.princeton.edu/tests). [Lopsided
 wins](https://projects.fivethirtyeight.com/partisan-gerrymandering-north-carolina/)
 from 538.
 
-Dependencies install.packages(“EnvStats”) install.packages(“readr”)
+Dependencies:  
+install.packages(“EnvStats”)  
+install.packages(“readr”)  
 install.packages(“tidyverse”)
 
-Example: 2018 Election Results
-------------------------------
+## Example: 2018 Election Results
 
 After saving Excel output from [Federal Election
 Commission](https://www.fec.gov/introduction-campaign-finance/election-and-voting-information/federal-elections-2018/),
@@ -45,8 +46,7 @@ numbers (dividing by 100 could be optional here)
     GOP$`GENERAL %` = gsub("%", "", GOP$`GENERAL %`)
     GOP$'GENERAL %'<-as.numeric(GOP$`GENERAL %`)
 
-Test 2
-------
+## Test 2
 
 Test 2 performs a Students T test on winning vote shares split by R and
 D in a state. If the difference in means is statistically significant,
@@ -56,12 +56,18 @@ statistically lower mean winning vote share, then it is possible that
 they have designed districts to spread out their voting blocks in order
 to more efficiently win seats (few wasted votes)  
 Now we can run the t-test
-<!--Look into whether we are running the correct T-test for our variables - we should assume populations of heterogenous variance-->  
-\#\#\# t-test assumptions: 1. The two samples are independently and
-randomly drawn from the source population(s);T 2. The scale of
-measurement for both samples has the properties of an equal interval
-scale; andT 3. The source population(s) can be reasonably supposed to
-have a normal distribution.
+<!--Look into whether we are running the correct T-test for our variables - we should assume populations of heterogenous variance-->
+
+### t-test assumptions:
+
+1.  The two samples are independently and randomly drawn from the source
+    population(s)  
+2.  The scale of measurement for both samples has the properties of an
+    equal interval scale  
+3.  The source population(s) can be reasonably supposed to have a normal
+    distribution.
+
+<!-- -->
 
     t.test(Dems$`GENERAL %`,GOP$`GENERAL %`,var.equal=F)
     Test2_PVal<-t.test(Dems$`GENERAL %`,GOP$`GENERAL %`,var.equal=F)$p.value
@@ -85,12 +91,16 @@ is gerrymandering in favor of the republicans in VA. However, we cannot
 reject the null hypothesis (p = 0.282) and thus Virginia House elections
 2018 fail Test 2. Later, we look into Test 3, which can catch some
 different factors than Test 2. Below are some alternative options for
-Test 2  
-\#\#\# Mann-Whitney U Test assumptions:  
-1. Treatment groups are independent of one another. Experimental units
-only receive one treatment and they do not overlap. 2. The response
-variable of interest is ordinal or continuous. 3. Both samples are
-random.
+Test 2
+
+### Mann-Whitney U Test assumptions:
+
+1.  Treatment groups are independent of one another. Experimental units
+    only receive one treatment and they do not overlap.  
+2.  The response variable of interest is ordinal or continuous.  
+3.  Both samples are random.  
+
+<!-- -->
 
     wilcox.test(Dems$`GENERAL %`,GOP$`GENERAL %`, conf.int = TRUE)
 
@@ -110,8 +120,9 @@ Expected Output
 Though not mandated (vote shares could be reasonably supposed to have a
 normal distribution), a Mann-Whitney test may be more appropriate than
 the t-test suggested by Wang et al. (2016). The alternative hypothesis
-is still rejected (p = 0.6485)  
-\#\#\# tidyverse options example setup
+is still rejected (p = 0.6485)
+
+### tidyverse options example setup
 
     library(tidyverse)
     dems.df = house18.general %>% 
@@ -122,8 +133,7 @@ is still rejected (p = 0.6485)
                         mutate(general_pct = parse_number(`GENERAL %`)/100)
     t.test(dems.df$`general_pct`,gop.df$`general_pct`,var.equal=F)
 
-Test 3
-------
+## Test 3
 
 Test 3 is also appropriate as the districts are roughly equally sized.
 To check this, we can combine the Dems and GOP tables into one, convert
@@ -139,13 +149,15 @@ relative to the average number of votes
 General votes in each district have a standard deviation of 30,091 votes
 with a mean of 186,551 votes. While Wang et al. (2016) do not indicate
 how much variation is allowed here, a SD of 16% of the total seems
-reasonably small. Then, for Test 3, we have two options:  
-\#\#\# Closely Divided State  
+reasonably small. Then, for Test 3, we have two options:
+
+### Closely Divided State
+
 When the redistricting party does not dominate. We do not have an exact
 metric of how close is ‘closely divided’. However, if we wanted to test
 from the perspective of the Republican as the redistricting party, we
 compare median and mean vote share across R districts as follows:
-*D**e**l**t**a* = (*m**e**a**n* − *m**e**d**i**a**n*)/(0.756 \* *S**E**v**o**t**e**s**h**a**r**e**s**a**c**r**o**s**s**N**d**i**s**t**r**i**c**t**s*)
+*D**e**l**t**a* = (*m**e**a**n* − *m**e**d**i**a**n*)/(0.756 \* *S**E* *v**o**t**e* *s**h**a**r**e**s* *a**c**r**o**s**s* *N* *d**i**s**t**r**i**c**t**s*)
 
     Test3_R_Delta<-(mean(GOP$`GENERAL %`)-median(GOP$`GENERAL %`))/(sd(VADist$`GENERAL %`)/sqrt(nrow(VADist)))
     Test3_R_Delta
@@ -153,9 +165,9 @@ compare median and mean vote share across R districts as follows:
 The resulting Delta = o.232 is small. From Wang et al. (2016) pg. 1308:
 “Delta is evaluated by comparison with significance values for the
 t-distribution. For Tests 2 and 3, statistical significance is typically
-reached when Delta exceeds 1.75” But since it is also the t-score, we
-can ask R to do a reverse t-score calculation to obtain the *p*-value
-(lower.tail = False):
+reached when Delta exceeds 1.75”  
+But since it is also the t-score, we can ask R to do a reverse t-score
+calculation to obtain the *p*-value (lower.tail = False):
 
     Test3_R_PVal<-pt(Test3_R_Delta,nrow(GOP),lower.tail = F)
     Test3_R_PVal
@@ -166,8 +178,10 @@ split):
     (mean(Dems$`GENERAL %`)-median(Dems$`GENERAL %`))/(sd(VADist$`GENERAL %`)/sqrt(nrow(VADist)))
 
 Delta (for VA Dems in the House) = 0.776 This could be connected to a
-*p*-value as in the previous example.  
-\#\#\# State Redistricting Party Dominates  
+*p*-value as in the previous example.
+
+### State Redistricting Party Dominates
+
 If we suspect the Democrats of gerrymandering in VA and want to test
 using 2018 House results, we would use a **chi-squared test for
 variance** to determine whether the variance in Democratic vote shares
@@ -175,7 +189,10 @@ variance** to determine whether the variance in Democratic vote shares
 variance in vote shares in districts won by Democrats nationally. We
 would perform this test here because democrats won 7 of 11 districts
 with a mean vote share of 65.5%. Again, there’s no exact threshold, so
-‘dominates’ is vague. \#\#\#\# EnvStats option  
+‘dominates’ is vague.
+
+#### EnvStats option
+
 <!--SD is the square root of the variance-->
 
     library(EnvStats)
@@ -195,12 +212,16 @@ partisan districting:
 
 We still can’t reject the null hypothesis, but remember that this isn’t
 the test we want to run for Test 3 on Republicans, as they do not
-dominate VA.  
-\#\#\#\# By hand (Democrate Party Example)  
+dominate VA.
+
+#### By hand (Democrate Party Example)
+
 For a lower one-tailed test at significance level *p*&lt;0.05, the lower
 bound of the zone of chance is equal to
-(*n**a**t**i**o**n**a**l**s**t**a**n**d**a**r**d**d**e**v**i**a**t**i**o**n*) \* *s**q**r**t*(*χ*<sup>2<sup> </sup></sup>*α* = 0.05, *N* − 1 /(*N* − 1))
-For *N* = 7, *χ*<sup>2<sup> </sup></sup>*α* = 0.05, 6  = 1.635
+$(national\\ standard\\ deviation)\*\\sqrt{χ^2\_{\\ α=0.05,\\ N-1}/(N-1)}$  
+For *N* = 7,  
+*χ*<sub> *α* = 0.05, 6</sub><sup>2</sup> = 1.635  
+thus
 
     NatlD_pctSD<-sd(NatlD$`GENERAL %`)/mean(NatlD$`GENERAL %`)*100
     LowerBound_NatlD_pctSD<-NatlD_pctSD-NatlD_pctSD*sqrt(1.635/(nrow(Dems)-1))
@@ -218,8 +239,7 @@ hypothesis that the variance in vote shares in Democrat-won districts in
 Virginia is lower than the national variance. We get false, so we fail
 to reject the null hypothesis as when we ran varTest.
 
-In summary
-----------
+## In summary
 
     Test2_PVal
     Test3_D_PVal
