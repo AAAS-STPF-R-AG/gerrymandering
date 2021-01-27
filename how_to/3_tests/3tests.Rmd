@@ -2,7 +2,7 @@
 title: "3 tests"
 author: "Brandon Rohnke"
 date: "1/26/2021"
-output: md_document
+output: html_document
 ---
 [3 tests of partisan gerrymandering](http://www.stanfordlawreview.org/wp-content/uploads/sites/3/2016/06/3_-_Wang_-_Stan._L._Rev.pdf), used by the [Princeton Gerrymandering project](https://gerrymander.princeton.edu/tests). [Lopsided wins](https://projects.fivethirtyeight.com/partisan-gerrymandering-north-carolina/) from 538.
 
