@@ -1,7 +1,7 @@
 ---
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 # Resources
 
@@ -36,3 +36,6 @@ https://www.go-fair.org/fair-principles/
 - Open Case Studies https://www.opencasestudies.org/
 - DataKind DC https://www.datakind.org/chapters/datakind-dc
 - code sharing in real time https://codeshare.io/
+
+-Tidy Tuesday
+-R4DS slack 

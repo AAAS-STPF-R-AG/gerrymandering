@@ -179,7 +179,7 @@ Test3_R_Delta<-(mean(GOP$`GENERAL %`)-median(GOP$`GENERAL %`))/(sd(VADist$`GENER
 Test3_R_Delta
 ```
 
-The resulting Delta = o.232 is small. From Wang et al. (2016) pg. 1308:
+The resulting Delta = 0.232 is small. From Wang et al. (2016) pg. 1308:
 “Delta is evaluated by comparison with significance values for the
 t-distribution. For Tests 2 and 3, statistical significance is typically
 reached when Delta exceeds 1.75”  
