@@ -11,7 +11,7 @@ pacman::p_load(pacman, tidyverse, tidycensus, tigris, sf)
 
 
 
-# Do stuff ---------------------------------------------------------------------------------
+# Look at an individual disctrict ---------------------------------------------------------------------------------
 
 v19 <- load_variables(2019, "acs5", cache = TRUE)
 # View(v19)
@@ -67,3 +67,29 @@ ggplot(data = va_st_leg) +
 #   scale_fill_distiller(name = "Population", palette = "PuBu", direction = 1) +
 #   ggtitle("Virginia State Senate Districts", subtitle = "Population Estimate, ACS 2019 5-yr") +
 #   theme_void()
+
+
+# Loop through all districts ---------------------------------------------------------------------------------
+ratio <- array(data<-0, dim = length(va_st_leg$GEOID))
+for (districtIterator in 1:length(va_st_leg$GEOID)){
+  districtTmp <-  va_st_leg[districtIterator,]
+  
+  areaTmp <- st_area(districtTmp)
+  perimiterCalculated <- 2*pi*sqrt(areaTmp/pi)
+  perimiterTmp <- st_length(districtTmp)
+  
+  ratio[districtIterator] <- perimiterTmp/perimiterCalculated
+}
+
+schwartberg <- tibble(district = 1:length(va_st_leg$GEOID), ratio = ratio)
+
+ggplot(data= schwartberg)+
+   geom_point(mapping = aes(x= district,y =ratio))
+
+va_st_leg$ratio <- ratio
+
+ggplot(data = va_st_leg) +
+  geom_sf(size = .2, aes(fill = ratio)) +
+  scale_fill_distiller(name = "Ratio", palette = "PuBu", direction = 1) +
+  ggtitle("Virginia State Senate Districts", subtitle = "Schartberg Ratio") +
+  theme_void()
