@@ -18,10 +18,10 @@ What requirements does a district have to meet in Virginia to qualify as a valid
 
 There are lots of metrics to evaluate district boundaries, from statistical, demographic, or purely mathematical perspective. Our first goal of this project is to collect those metrics here. 
 
-- [Here](http://www.ams.org/publicoutreach/feature-column/fc-2014-08) is an article from the American Mathematical Society about metrics for evaluating district shapes. The first 4 are compactness metrics. **Sam** 
+- [Here](http://www.ams.org/publicoutreach/feature-column/fc-2014-08) is an article from the American Mathematical Society about metrics for evaluating district shapes. The first 4 are compactness metrics. **Mike** 
     * Polsby-Popper	
     * Reock: ratio of the area of the polygon (district) to the area of the smallest circle cirumscribing the polygon. 
-    * Schwartberg: ratio of the perimeter of the polygon (district) 	to the perimeter of the circle with the same area as the polygon
+    * Schwartberg: ratio of the perimeter of the polygon (district)	to the perimeter of the circle with the same area as the polygon
     * Convex Hull	
     * Bizarreness 	
     * More on [Compactness](https://arxiv.org/pdf/1803.02857.pdf)
