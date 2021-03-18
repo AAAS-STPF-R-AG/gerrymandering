@@ -1,7 +1,8 @@
 # CLEAN UP #################################################
 
 # Clear packages
-pacman::p_unload(all)  # Remove all add-ons
+pacman::p_load(pacman)
+p_unload(all)  # Remove all add-ons
 # detach("package:datasets", unload = TRUE)  # For base
 
 
