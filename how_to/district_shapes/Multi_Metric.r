@@ -32,7 +32,7 @@ polsbyPopper <- function(disctrict) {
   return(ratio)
 }
 
-# Look at an individual disctrict ---------------------------------------------------------------------------------
+# Look at an individual district ---------------------------------------------------------------------------------
 
 v19 <- load_variables(2019, "acs5", cache = TRUE)
 # View(v19)
@@ -106,12 +106,17 @@ multiMetric <- tibble(district = 1:length(va_st_leg$GEOID),
                  schwartberg = schwartbergRatio,
                  population = pop_st_leg$estimate)
 
+fun.1 <- function(x) x^-(1/2)
 
 ggplot(data= multiMetric)+
-  geom_point(mapping = aes(x= polsbyPopper,y =schwartberg, color =population, size =1.5))+
-  xlab("X title")+
-  ylab("Y label")+
-  ggtitle("this is a title")
+  geom_point(mapping = aes(x=polsbyPopper, y=schwartberg, color=population, size =1.5))+
+  stat_function(fun = fun.1) + 
+  # xlim(0.1,.5)+
+  # geom_line(mapping = aes(x=polsbyPopper, y=schwartberg))+
+  xlab("Polsby Popper")+
+  ylab("Schwartberg")+
+  ggtitle("Schwartberg vs Polsby Popper")+
+  geom_text(aes(x = 0.3,y= 3.5, label="S=PP^-1/2"))
 
 
 
