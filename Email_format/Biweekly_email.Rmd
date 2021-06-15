@@ -1,8 +1,11 @@
 ---
-title: R Users biweekly meeting
+title: "R Users biweekly meeting"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 Hi all,
 
@@ -14,11 +17,8 @@ R you ready to talk about R. Come learn what forcats is and why it's not fordogs
 pacman::p_load(pacman, tidyverse, lubridate)
 dayOfMeeting <- mdy("06-16-2021")
 timeOfMeeting <- "5:30pm" # could be included in date as mdy_hm
-sprintf("The R Users AG will meet tomorrow, %s, Wednesday at %s, to talk about R.", date, time) |>
-  print()
+print(sprintf("The R Users AG will meet tomorrow, %s, Wednesday at %s, to talk about R.", dayOfMeeting, timeOfMeeting))
 ```
-  
-
 
 [Zoom link](https://nih.zoomgov.com/j/1611027635?pwd=aW1mWThqYkRoMjZhN1JUR2RVTTJEZz09)
 
