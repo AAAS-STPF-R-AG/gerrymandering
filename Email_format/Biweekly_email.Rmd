@@ -9,13 +9,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Hi all,
 
-This week we will be watching a recorded talk from the recent rstudio::global conference and discussing. Also, keep an eye out for forthcoming info on the symposium on Data & Democracy, which will be held Thursday, July 15, 2021 (10am-4:45pm EDT).
+Let's chat about the goings on in the woRld: symposium recap and data analysis, future of the AG, and more. 
 
 R you ready to talk about R. Come learn what forcats is and why it's not fordogs? Do you want to talk about spatial || special data? Do you need frames for your tables? R you having trouble with tibbles? 
 
 ```{r}
 pacman::p_load(pacman, tidyverse, lubridate)
-dayOfMeeting <- mdy("06-30-2021")
+dayOfMeeting <- mdy("07-28-2021")
 timeOfMeeting <- "5:30pm" # could be included in date as mdy_hm
 print(sprintf("The R Users AG will meet tomorrow, %s, Wednesday at %s, to talk about R.", dayOfMeeting, timeOfMeeting))
 ```
